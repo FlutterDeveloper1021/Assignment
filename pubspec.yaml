@@ -30,6 +30,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_form_bloc: any
+  shared_preferences: any
+  sqflite: ^2.0.0
+  path_provider: ^2.0.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -60,7 +64,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-      - assets/
+      - assets/images/
     # - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

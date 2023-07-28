@@ -1,6 +1,9 @@
 import 'package:assignment/OrderScreen.dart';
 import 'package:assignment/ProfileScreen.dart';
+import 'package:assignment/main.dart';
+import 'package:assignment/signin_page.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({super.key});
@@ -43,8 +46,22 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         ],
       ),
       appBar: AppBar(
-          backgroundColor: Colors.amber,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                  onPressed: () async {
+                    var sharedpref = await SharedPreferences.getInstance();
+                    sharedpref.setBool(SplashScreenState.KEYLOGIN, false);
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => SignInPage()));
+                  },
+                  child: Text('Logout')),
+            )
+          ],
+          backgroundColor: Colors.white60,
           // centerTitle: true,
+
           title: const Text(
             'DASHBOARD',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -83,7 +100,12 @@ class Bodypart extends StatelessWidget {
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black),
                               borderRadius: BorderRadius.circular(15)),
-                          // child: Image.asset('assets/images/images1.jpg'),
+                          // child:
+                          //image assets
+                          // Image.asset(
+                          //   'assets/images/images1.jpg',
+                          //   // fit: BoxFit.fill,
+                          // ),
                         )
                       ],
                     ),
@@ -109,7 +131,9 @@ class Bodypart extends StatelessWidget {
                             border: Border.all(color: Colors.black),
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          // child: Image.asset('assets/images/images1.jpg'),
+                          //image assets
+                          // child: Image.asset('assets/images/images1.jpg',
+                          //     fit: BoxFit.fill),
                         )
                       ],
                     ),
@@ -130,12 +154,21 @@ class Bodypart extends StatelessWidget {
             itemCount: 8,
             itemBuilder: (context, index) {
               return Container(
-                // color: Colors.white,
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.black),
                     borderRadius: BorderRadius.circular(20)),
                 child: Center(
-                  child: Text('Item $index'),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      //Images asest
+                      // Image.asset(
+                      // 'assets/images/images2.jpg',
+                      // height: 80,
+                      // ),
+                      Text('Item $index'),
+                    ],
+                  ),
                 ),
               );
             },
